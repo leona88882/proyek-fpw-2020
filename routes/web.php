@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "controlLeo@loadlogin");
+Route::post('/checklogin','ControlLeo@checklogin');
+Route::get('/register','controlLeo@loadregister');
+Route::post('/olah_regis','controlLeo@olahregis');
+Route::get('/menuadmin','controlLeo@loadadmin');
