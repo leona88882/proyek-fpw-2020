@@ -99,59 +99,62 @@ public function olahlogout(){
 }
 public function checklogin(Request $data){
     $ctr=0;
-    $remember= $data-> input("remember");
-
-    $email=$data -> input("username");
-    $password=$data -> input("password");
-
-    $ctr=0;
-    $rule = [
-
-                'username'=>['required'],
-                'password'=>'required'
-
-    ];
-    $custom_msg = [
-        "required" => ":attribute harus diisi"
-
-    ];
-    $this->validate($data, $rule, $custom_msg);
-
-    $result = users::where('username_user', '=', $data->input('username'))->where('password_user','=',$data->input('password'))->first();
-    if($result!=null){
-
-        if($data->input("remember")==1){
-            echo "masuk";
-            $tambahan="s";
-           cookie::queue("remember",($result[0]->jenis).$tambahan,60);
-        }
-    }else{
-        echo"masuk";
-        $ctr=1;
-    }
-
-
-    Cookie::queue("errcode",$ctr."",60);
     if($data->input('username')=="admin" &&$data->input("password")=="admin"){
         return redirect("/menuadmin");
     }
-    else if($ctr==1){
-        cookie::queue("errcode",0,60);
-        return redirect("");
-    }
-    else if($result->status_delete_user==1){
-        cookie::queue("errcode",9,60);
-        return redirect("");
-    }
-    else if ($result->jenis_user==0){
-     Cookie::queue("errcode","kosong",60);
-     cookie::queue("logins",$email,60);
-     return redirect("/user");
+    else{
+        $remember= $data-> input("remember");
 
-    }else{
+        $email=$data -> input("username");
+        $password=$data -> input("password");
+
+        $ctr=0;
+        $rule = [
+
+                    'username'=>['required'],
+                    'password'=>'required'
+
+        ];
+        $custom_msg = [
+            "required" => ":attribute harus diisi"
+
+        ];
+        $this->validate($data, $rule, $custom_msg);
+
+        $result = users::where('username_user', '=', $data->input('username'))->where('password_user','=',$data->input('password'))->first();
+        if($result!=null){
+
+            if($data->input("remember")==1){
+                echo "masuk";
+                $tambahan="s";
+            cookie::queue("remember",($result[0]->jenis).$tambahan,60);
+            }
+        }else{
+            echo"masuk";
+            $ctr=1;
+        }
+
+
+        Cookie::queue("errcode",$ctr."",60);
+
+        if($ctr==1){
+            cookie::queue("errcode",0,60);
+            return redirect("");
+        }
+        else if($result->status_delete_user==1){
+            cookie::queue("errcode",9,60);
+            return redirect("");
+        }
+        else if ($result->jenis_user==0){
+        Cookie::queue("errcode","kosong",60);
         cookie::queue("logins",$email,60);
-     return redirect("pegawai");
+        return redirect("/user");
 
+        }else{
+            cookie::queue("logins",$email,60);
+        return redirect("pegawai");
+
+        }
     }
-}
+    }
 }
