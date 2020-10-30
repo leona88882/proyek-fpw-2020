@@ -29,7 +29,7 @@
     </head>
     <body>
         <div class="kotak">
-            <button class="button"><a href="/insertbarang">Insert Pegawai</a></button>
+            <button class="button"><a href="/insertbarang">Insert Barang</a></button>
             <button class="button"><a href="/insertsupplier">Insert Supplier</a></button>
             <button class="button"><a href="/historymasuk">Check history masuk</a></button>
             <button class="button"><a href="/historykeluar">Check history Keluar</a></button>
