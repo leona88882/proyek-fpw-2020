@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\supplier;
 use App\users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -156,5 +158,25 @@ public function checklogin(Request $data){
 
         }
     }
+    }
+    public function load_supplier(){
+        return view('insertsupplier');
+    }
+    public function olah_supplier(Request $data){
+        $kode= strtoupper(substr($data->input('nama_supplier'),0,2));
+        $result= supplier::where('id_supplier', 'like', '%' . $kode . '%')->get();
+        $angka= count($result)+1;
+
+        if($angka<10){
+            $kode.="00".$angka;
+        }else if($angka<100){
+            $kode.="0".$angka;
+        }else{
+            $kode.=$angka;
+        }
+        echo $kode;
+        $data->merge(['id_supplier'=>$kode]);
+        supplier::create($data->all());
+        return redirect('insertsupplier');
     }
 }

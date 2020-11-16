@@ -18,4 +18,6 @@ Route::post('/checklogin','ControlLeo@checklogin');
 Route::get('/register','controlLeo@loadregister');
 Route::post('/olah_regis','controlLeo@olahregis');
 Route::get('/menuadmin','controlLeo@loadadmin');
+Route::get('/insertsupplier','controlLeo@load_supplier');
+Route::post('/olah_supplier','controlLeo@olah_supplier');
 ///
