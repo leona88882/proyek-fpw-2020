@@ -32,12 +32,12 @@
     <form action="/checklogin" method="post">
         @csrf
     <h1 style="text-align: center">Login</h1>
+
     <br>Username:<input type="text" placeholder="Username" name="username">
     <br>Password:  <input type="text"  placeholder="Password" id="password" name="password">
     <br>
-    <input type="checkbox"  id="" name="remember" value="1"> Remember Me<br>
-    <input type="submit" value="Login" class="button">
-    <button class="button" ><a style ="color:white ;"href="register">Register</a></button><br>
+    <input type="submit" value="Login" class="button"><br>
+    <a href="/register">Belum Punya Akun? Register sekarang</a><br>
     <span>{{$err}}</span>
     </form>
     @if($errors->any())

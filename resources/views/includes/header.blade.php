@@ -9,7 +9,9 @@
             height: 80px;
             border:1px,1px,1px,1px;
             border-style: outset;
-
+            background-color: #CCFFB3;
+            margin: 0px;
+            padding: 0px;
         }
         .header-content{
             margin-left: 32px;

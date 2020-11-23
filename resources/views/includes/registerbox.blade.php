@@ -1,4 +1,5 @@
 <head>
+
     <style>
         .kotak {
         border-radius: 25px;
@@ -7,7 +8,7 @@
         padding-left: 20px;
         padding-right: 0px;
         width: 400px;
-        height: 400px;
+        height: 300px;
 
     }
     .button {
@@ -23,7 +24,9 @@
             margin: 4px 2px;
             cursor: pointer;
             }
-
+    a{
+        color: gray
+    }
     </style>
     </head>
     <body>
@@ -32,17 +35,17 @@
         <h1 style="text-align: center">Register</h1>
         <form action="/olah_regis" method="post">
             @csrf
-        <br>Username : <input type="text" name="username_user" id="">
-        <br>Password:  <input type="text"   name="password_user" >
+        <br>Username :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="username_user" id="">
+        <br>Password : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text"   name="password_user" >
         <br>Confirm Password:  <input type="text"  name="password_user_confirmation" >
-        <br>Tipe user  <select name="jenis_user" id="">
+        <br>Tipe user &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <select name="jenis_user" id="">
             <option value="0">Pelanggan</option>
             <option value="1">pegawai</option>
             </select>
         <br>
         <input type="hidden" name="status_delete_user" value="0">
-        <input type="submit" value="Register" name="btnregis" class="button" id="submitku">
-        <button class="button" ><a style ="color:white ;"href="/">Login</a></button><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="submit" value="Register" name="btnregis" class="button" id="submitku"><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a href="/">Sudah Punya Akun? Login</a>
     </form>
     <span style="color: red">{{$err}}</span>
 

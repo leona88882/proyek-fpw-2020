@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 29, 2020 at 01:32 PM
+-- Generation Time: Nov 23, 2020 at 08:47 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -35,18 +35,19 @@ CREATE TABLE `barang` (
   `nama_barang` varchar(255) NOT NULL,
   `id_jenis` varchar(255) NOT NULL COMMENT 'forgein id jenis barang',
   `stock_barang` int(11) NOT NULL,
-  `harga_barang` int(11) NOT NULL
+  `harga_barang` int(11) NOT NULL,
+  `status_delete_barang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `nama_barang`, `id_jenis`, `stock_barang`, `harga_barang`) VALUES
-('BE001', 'Beras', 'SE001', 10, 30000),
-('IK001', 'Ikan', 'DA001', 10, 30000),
-('KA001', 'Kangkung', 'SA001', 20, 10000),
-('SA001', 'Sapi', 'DA001', 10, 20000);
+INSERT INTO `barang` (`id_barang`, `nama_barang`, `id_jenis`, `stock_barang`, `harga_barang`, `status_delete_barang`) VALUES
+('BE001', 'Beras', 'SE001', 10, 30000, 1),
+('IK001', 'Ikan', 'DA001', 10, 30000, 0),
+('KA001', 'Kangkung', 'SA001', 20, 10000, 0),
+('SA001', 'Sapi', 'DA001', 10, 20000, 0);
 
 -- --------------------------------------------------------
 
@@ -178,6 +179,11 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`) VALUES
+('AS001', 'asd'),
+('AS002', 'asd'),
+('AS003', 'asd'),
+('AS004', 'asda'),
+('HA001', 'hallo'),
 ('IN001', 'Indofood'),
 ('KO001', 'Kominfood');
 
@@ -200,10 +206,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username_user`, `password_user`, `jenis_user`, `status_delete_user`) VALUES
+('asd', 'asd', 0, 0),
 ('donny', 'password', 1, 1),
 ('john', 'dave', 0, 1),
+('kim', 'kim', 1, 0),
 ('leonardi', 'leonardi', 0, 0),
-('maximilianus', 'zero', 1, 0);
+('maximilianus', 'zero', 1, 1);
 
 --
 -- Indexes for dumped tables

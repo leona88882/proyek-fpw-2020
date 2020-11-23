@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\supplier;
 use App\users;
+use App\barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
@@ -30,11 +31,6 @@ class controlLeo extends Controller
     public function olahregis(Request $data){
 
 
-
-
-
-
-
             $rule = [
                 'username_user'=>'required',
                 'jenis_user'=>'required',
@@ -45,8 +41,7 @@ class controlLeo extends Controller
                 "required" => ":attribute harus diisi",
                 "digits"=>"Panjang :attribute Minimal adalah :digits",
                 "confirmed"=>"Confirm Password Tidak sesuai",
-                "password_user_confirmation.required"=>"Confirm password Harus diisi",
-                "notelp.required"=>"Nomor Telepone Harus diisi"
+                "password_user_confirmation.required"=>"Confirm password Harus diisi"
 
 
             ];
@@ -179,4 +174,53 @@ public function checklogin(Request $data){
         supplier::create($data->all());
         return redirect('insertsupplier');
     }
+    public function showpegawai(Request $data){
+       $result= users::where("jenis_user","=","1")->where('status_delete_user','=','0')->get();
+        return view('pegawai',['result'=>$result]);
+    }
+    public function softdeletepegawai(Request $data){
+        $result= users::where("username_user","=",$data->input('username'))->first();
+        $result->status_delete_user=1;
+        $result->save();
+        return redirect('editpegawai');
+    }
+    public function editpegawai(Request $data){
+        $result= users::where("username_user","=",$data->input('username'))->get();
+         return view('editpegawai',['result'=>$result]);
+     }
+     public function olaheditpegawai(Request $data){
+        $result = users::where('username_user', '=', $data->input('username'))->where('password_user','=',$data->input('old_password'))->first();
+       if($result===null){
+        return redirect('/editpegawai')->with('alert', 'old password tidak kembar');
+        }
+        else{
+            $result = users::where('username_user', '=', $data->input('username_user'))->first();
+
+             if($result==null){
+                $result = users::where('username_user', '=', $data->input('username'))->first();
+
+                $result->username_user=$data->input('username_user');
+                $result->password_user=$data->input('password');
+                $result->save();
+                return redirect('/editpegawai')->with('alert', 'berhasil edit');
+            }else{
+
+                return redirect('/editpegawai')->with('alert', 'new username  kembar');
+            }
+
+        }
+
+
+     }
+     public function showbarang(Request $data){
+        $result= barang::where('status_delete_barang','=','0')->get();
+        return view('listbarang',['result'=>$result]);
+     }
+     public function softdeletebarang(Request $data){
+         $result= barang::where("id_barang","=",$data->input('id_barang'))->first();
+         $result->status_delete_barang=1;
+         $result->save();
+         return redirect('deletebarang');
+     }
+
 }
