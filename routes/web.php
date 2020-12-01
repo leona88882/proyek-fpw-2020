@@ -27,5 +27,7 @@ Route::post('/olaheditpegawai','controlLeo@olaheditpegawai');
 Route::get('/editpegawai','controlLeo@showpegawai');
 Route::get('/deletebarang','controlLeo@showbarang');
 Route::post('/softbarang','controlLeo@softdeletebarang');
+Route::get('/historymasuk','controlRich@historyin');
+Route::get('/historykeluar','controlRich@historyout');
 ///
 
