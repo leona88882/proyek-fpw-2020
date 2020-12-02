@@ -20,7 +20,7 @@
     @include('includes.header')
 
     <div class="container">
-    @include('includes/inhistory')
+    @include('includes/search')
     </div>
 
 </body>

@@ -1,5 +1,14 @@
 <head>
     <style>
+        .kotak {
+        border-radius: 25px;
+        border: 2px solid #73AD21;
+        padding-top: 0px;
+        padding-left: 20px;
+        padding-right: 0px;
+        width: 350px;
+        height: 100px;
+        }
         table {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
@@ -39,26 +48,24 @@
     </head>
     <body>
         <button><a href="menuadmin" class="button">Back home</a></button>
+        <button><a href="historymasuk" class="button">Back to History</a></button>
+        </div>
         <div class="table">
             <table>
                 <tr>
                     <th>ID</th>
                     <th>Nama Barang</th>
-                    <th>Nama Pegawai</th>
-                    <th>Nama Pelanggan</th>
                     <th>Jumlah</th>
-                    <th>Total Harga</th>
+                    <th>Supplier</th>
                     <th>Tanggal</th>
                 </tr>
                 @foreach ($trans as $item)
                     <tr>
-                        <td>{{$item->id_htrans_out}}</td>
+                        <td>{{$item->id_htrans_in}}</td>
                         <td>{{$item->nama_barang}}</td>
-                        <td>{{$item->username_pegawai}}</td>
-                        <td>{{$item->username_pelanggan}}</td>
                         <td>{{$item->jumlah_barang}}</td>
-                        <td>{{$item->total_harga}}</td>
-                        <td>{{$item->tanggal_htrans_out}}</td>
+                        <td>{{$item->nama_supplier}}</td>
+                        <td>{{$item->tanggal_htrans_in}}</td>
                     </tr>
                 @endforeach
             </table>

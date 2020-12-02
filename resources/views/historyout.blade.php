@@ -13,7 +13,7 @@
     }
     .container{
         padding-top:10%;
-        padding-left: 40%;
+        padding-left: 5%;
     }
 </style>
 <body>

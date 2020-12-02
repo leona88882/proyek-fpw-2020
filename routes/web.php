@@ -29,5 +29,9 @@ Route::get('/deletebarang','controlLeo@showbarang');
 Route::post('/softbarang','controlLeo@softdeletebarang');
 Route::get('/historymasuk','controlRich@historyin');
 Route::get('/historykeluar','controlRich@historyout');
+Route::post('/searchin','controlRich@searchin');
+Route::get('/search', function(){
+    return view('searching');
+});
 ///
 
