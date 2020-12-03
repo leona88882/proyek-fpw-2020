@@ -145,7 +145,7 @@ public function checklogin(Request $data){
         else if ($result->jenis_user==0){
         Cookie::queue("errcode","kosong",60);
         cookie::queue("logins",$email,60);
-        return redirect("/user");
+        return redirect("/menuadmin");
 
         }else{
             cookie::queue("logins",$email,60);
