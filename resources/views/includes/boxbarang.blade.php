@@ -58,9 +58,31 @@
                 <div class="col-6 col-sm-7"><input type="text" name="nama_barang" id="" style="width: 100%"></div>
                 <br>
                 <br>
+                <div class="col-3 col-sm-3">Jenis Barang</div>
+                <div class="col-3 col-sm-1">:</div>
+                <div  class="col-3 col-sm-7">
+                    @isset($jenis)
+                        <div>
+                            <select name="jenis" id="jenis" style="width: 100%;">
+                                <option value="0" >--- Pilih Jenis Barang ---</option>
+                                @foreach ($jenis as $value)
+                                <option value="{{$value->id_jenis}}">{{$value->jenis_barang}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endisset
+                </div>
+
+                <br>
+                <br>
                 <div class="col-3 col-sm-3">Jumlah Barang</div>
                 <div class="col-3 col-sm-1">:</div>
-                <div class="col-6 col-sm-7"><input type="number" name="jmlh_barang" id="" value="0" style="width: 100%"></div>
+                <div class="col-6 col-sm-7"><input type="number" name="jmlh_barang" id="" value="0" min="1" style="width: 100%"></div>
+                <br>
+                <br>
+                <div class="col-3 col-sm-3">Harga Barang</div>
+                <div class="col-3 col-sm-1">:</div>
+                <div class="col-6 col-sm-7"><input type="number" name="harga_barang" id="" value="0" min="0" style="width: 100%"></div>
             </div>
 
             <br>
