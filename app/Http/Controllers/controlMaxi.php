@@ -24,6 +24,14 @@ class controlMaxi extends Controller
         // dd($sup);
         return view("insertbarang",["supplier"=>$sup, "jenis"=>$jenis]);
     }
+    public function indexAddStock(Request $req)
+    {
+        $sup = supplier::all();
+        // $jenis = jenisBarang::all();
+        $barang = barang::all();
+        // dd($sup);
+        return view("addstock",["supplier"=>$sup, "barang"=>$barang]);
+    }
     public function addBarang(Request $req)
     {
         // dd($req->input("sup"));
@@ -70,6 +78,44 @@ class controlMaxi extends Controller
 
         return redirect("/insertbarang");
         // dd ($add);
+    }
+    public function addStockBarang(Request $req)
+    {
+        $barang = $req->input("barang");
+        $jumlah = $req->input("jmlh_barang");
+        $supplier = $req->input("sup");
+        $rules=[
+            "sup"=>["required",new cek_sup],
+        ];
+        $this->validate($req, $rules);
+        $date = date("Y-m-d");
+        date_default_timezone_set("Asia/Bangkok");
+        $time =  date("Y-m-d h:i:sa");
+        $htrans_in = htrans_in::where("id_htrans_in", "like", $date.""."%")->get();
+        $jumlahHtransIn = strval(count($htrans_in)+1);
+        $kodeHtransIn = $date.substr("-000",0,4-strlen($jumlahHtransIn)).$jumlahHtransIn;
+
+        $add = htrans_in::create([
+            'id_htrans_in'=>$kodeHtransIn,
+            'id_supplier'=>$req->input("sup"),
+        ]);
+        for ($i=0; $i<count($barang); $i++){
+            if($barang[$i]!="0"){
+                if ($jumlah[$i]>0) {
+                    $add = dtrans_in::create([
+                        'id_htrans_in'=>$kodeHtransIn,
+                        "id_barang"=>$barang[$i],
+                        "jumlah_barang"=>$jumlah[$i],
+                    ]);
+                    $temp = barang::find($barang[$i]);
+                    $temp->stock_barang = ($temp->stock_barang+$jumlah[$i]);
+                    $temp->save();
+                    // $update = barang::where("id_barang",$barang[$i])->update("stock_barang"=>0);
+                }
+            }
+        }
+        return redirect("/tambahstockbarang");
+        // dd($barang);
     }
 
 }
