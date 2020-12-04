@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\supplier;
 use App\users;
 use App\barang;
+use Illuminate\Support\Facades\DB;
+
 use App\jenis_barang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -146,7 +148,7 @@ public function checklogin(Request $data){
         else if ($result->jenis_user==0){
         Cookie::queue("errcode","kosong",60);
         cookie::queue("logins",$email,60);
-        return redirect("/menuadmin");
+        return redirect("/historypelanggan");
 
         }else{
             cookie::queue("logins",$email,60);
@@ -243,5 +245,14 @@ public function checklogin(Request $data){
          $result->save();
          return redirect('deletebarang');
      }
+     public function dtransout(){
+        $result =DB::select('select tanggal_htrans_out, id_htrans_out from htrans_out where username_pelanggan="'.cookie::get('logins').'"');
+        return view('dhistoryout',['result'=>$result]);
+     }
+     public function historyout(Request $data)
+    {
+        $result = DB::select('select distinct d.id_htrans_out, b.nama_barang, h.username_pegawai, h.username_pelanggan, d.jumlah_barang, d.total_harga, h.tanggal_htrans_out from dtrans_out d, barang b, htrans_out h where b.id_barang = d.id_barang AND d.id_htrans_out = h.id_htrans_out and d.id_htrans_out="'.$data->input('id').'" order by d.id_htrans_out asc');
+        return view('historyout', ['trans'=>$result]);
+    }
 
 }
