@@ -95,7 +95,7 @@ class controlMaxi extends Controller
         $jumlahHtransIn = strval(count($htrans_in)+1);
         $kodeHtransIn = $date.substr("-000",0,4-strlen($jumlahHtransIn)).$jumlahHtransIn;
 
-        $add = htrans_in::create([
+        $add = htrans_in::create([//
             'id_htrans_in'=>$kodeHtransIn,
             'id_supplier'=>$req->input("sup"),
         ]);
