@@ -137,8 +137,8 @@ CREATE TABLE `htrans_out` (
 --
 
 INSERT INTO `htrans_out` (`ID_htrans_out`, `username_pegawai`, `username_pelanggan`, `tanggal_htrans_out`, `jumlah`) VALUES
-('2020-05-01-001', 'donny', 'leonardi', '2020-05-01 12:28:07', 150000),
-('2020-05-01-001', 'donny', 'maximilanus', '2020-05-01 12:28:07', 15000);
+('2020-05-01-001', 'donny', 'leonardi', '2020-05-01 12:28:07', 120000),
+('2020-05-01-002', 'donny', 'maximilanus', '2020-05-01 12:28:07', 150000);
 
 -- --------------------------------------------------------
 
