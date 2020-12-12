@@ -36,6 +36,7 @@
     </style>
 </head>
 <body>
+    <button><a href="/">Logout</a></button>
     @include('includes.header')
       <div class="container">
           <div class="product">

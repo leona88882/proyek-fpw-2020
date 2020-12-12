@@ -37,5 +37,6 @@
             <button class="button"><a href="/tambahstockbarang">tambah stock barang</a></button>
             <button class="button"><a href="/tambahjenisbarang">tambah jenis barang</a></button>
             <button class="button"><a href="/editpegawai">Edit/delete Pegawai</a></button>
+            <button class="button" > <a href="/">Logout</a></button>
         </div>
     </body>
