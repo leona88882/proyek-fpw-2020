@@ -43,6 +43,6 @@ Route::post('/searchin','controlRich@searchin');
 Route::get('/search', function(){
     return view('searching');
 });
-
+Route::post('checkout', 'controlLeo@checkout');
 ///
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\supplier;
 use App\users;
 use App\barang;
+use App\dtrans_out;
+use App\htrans_out;
 use Illuminate\Support\Facades\DB;
 
 use App\jenis_barang;
@@ -253,6 +255,41 @@ public function checklogin(Request $data){
     {
         $result = DB::select('select distinct d.id_htrans_out, b.nama_barang, h.username_pegawai, h.username_pelanggan, d.jumlah_barang, d.total_harga, h.tanggal_htrans_out from dtrans_out d, barang b, htrans_out h where b.id_barang = d.id_barang AND d.id_htrans_out = h.id_htrans_out and d.id_htrans_out="'.$data->input('id').'" order by d.id_htrans_out asc');
         return view('historyout', ['trans'=>$result]);
+    }
+    public function checkout(Request $data){
+        $date = date("Y-m-d");
+        date_default_timezone_set("Asia/Bangkok");
+        $time =  date("Y-m-d h:i:sa");
+        $htrans_out = htrans_out::where("id_htrans_out", "like", $date.""."%")->get();
+        $jumlahHtransout = strval(count($htrans_out)+1);
+        $kodeHtransout = $date.substr("-000",0,4-strlen($jumlahHtransout)).$jumlahHtransout;
+        echo $kodeHtransout."<br>";
+        echo $data->input('total');
+        htrans_out::create([//
+            'ID_htrans_out'=>$kodeHtransout,
+            'username_pegawai'=>cookie::get('logins'),
+            'username_pelanggan'=>$data->input('cust'),
+            'jumlah'=>$data->input('total')
+        ]);
+
+
+        $dtrans=session()->pull('cart');
+
+        foreach ($dtrans as $key) {
+            dtrans_out::create([//
+            'ID_htrans_out'=>$kodeHtransout,
+            'id_barang'=>$key["id"],
+            'jumlah_barang'=>$key["quantity"],
+            'total_harga'=>$key["price"]
+        ]);
+        $temp = barang::find($key["id"]);
+        $temp->stock_barang = ($temp->stock_barang-$key["quantity"]);
+        $temp->save();
+        var_dump($key);
+        echo "<br>";
+        }
+        return redirect('/pegawai');
+        dd(session('cart'));
     }
 
 }

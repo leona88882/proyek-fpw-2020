@@ -10,6 +10,7 @@
         height: 250px;
 
     }
+
     .button {
             border-radius: 25px;
             background-color: #4CAF50;
