@@ -254,7 +254,7 @@ public function checklogin(Request $data){
      public function historyout(Request $data)
     {
         $result = DB::select('select distinct d.id_htrans_out, b.nama_barang, h.username_pegawai, h.username_pelanggan, d.jumlah_barang, d.total_harga, h.tanggal_htrans_out from dtrans_out d, barang b, htrans_out h where b.id_barang = d.id_barang AND d.id_htrans_out = h.id_htrans_out and d.id_htrans_out="'.$data->input('id').'" order by d.id_htrans_out asc');
-        return view('historyout', ['trans'=>$result]);
+        return view('hhistoryout', ['trans'=>$result]);
     }
     public function checkout(Request $data){
         $date = date("Y-m-d");

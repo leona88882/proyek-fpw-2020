@@ -36,8 +36,8 @@
         <form action="/olah_regis" method="post">
             @csrf
         <br>Username :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="username_user" id="">
-        <br>Password : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text"   name="password_user" >
-        <br>Confirm Password:  <input type="text"  name="password_user_confirmation" >
+        <br>Password : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="password"   name="password_user" >
+        <br>Confirm Password:  <input type="password"  name="password_user_confirmation" >
         <br>Tipe user &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <select name="jenis_user" id="">
             <option value="0">Pelanggan</option>
             <option value="1">pegawai</option>

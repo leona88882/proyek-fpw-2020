@@ -1,3 +1,4 @@
+@include('includes.header')
 <head>
     <style>
         table {
@@ -38,23 +39,27 @@
     </style>
     </head>
     <body>
-        <button><a href="/" class="button">Logout</a></button>
+        <button><a href="historypelanggan" class="button">Back home</a></button>
         <div class="table">
             <table>
                 <tr>
                     <th>ID</th>
+                    <th>Nama Barang</th>
+                    <th>Nama Pegawai</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Jumlah</th>
+                    <th>Total Harga</th>
                     <th>Tanggal</th>
-                    <th>Action</th>
                 </tr>
-                @foreach ($result as $item)
+                @foreach ($trans as $item)
                     <tr>
                         <td>{{$item->id_htrans_out}}</td>
+                        <td>{{$item->nama_barang}}</td>
+                        <td>{{$item->username_pegawai}}</td>
+                        <td>{{$item->username_pelanggan}}</td>
+                        <td>{{$item->jumlah_barang}}</td>
+                        <td>{{$item->total_harga}}</td>
                         <td>{{$item->tanggal_htrans_out}}</td>
-                        <td><form action="htranspelangan" method="post">
-                            @csrf
-                            <input type="submit" value="Detail" class="button">
-                            <input type="hidden" name="id" value="{{$item->id_htrans_out}}">
-                        </form></td>
                     </tr>
                 @endforeach
             </table>
